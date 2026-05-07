@@ -22,28 +22,15 @@
     <span class="badge">● LIVE</span>
     <p style="color:#94a3b8">Running on Kubernetes K3s cluster</p>
     <div class="info" id="data">
-      <p>Loading API data...</p>
+      <p>📦 <span>Message:</span> Hello from DevOps Portfolio!</p>
+      <p>✅ <span>Status:</span> running</p>
+      <p>👤 <span>Author:</span> youssraguira</p>
+      <p>🏗️ <span>Platform:</span> Kubernetes K3s (3 nodes)</p>
+      <p>🔧 <span>Stack:</span> FastAPI + ArgoCD + Jenkins + Grafana</p>
+      <p>🐳 <span>Registry:</span> Docker Hub</p>
+      <p>📊 <span>Monitoring:</span> Prometheus + Grafana</p>
     </div>
-    <button onclick="fetchData()">🔄 Refresh</button>
+    <button onclick="window.location.reload()">🔄 Refresh</button>
   </div>
-  <script>
-    async function fetchData() {
-      document.getElementById('data').innerHTML = '<p>Loading...</p>';
-      try {
-        const res = await fetch('http://192.168.64.8:32001/');
-        const data = await res.json();
-        document.getElementById('data').innerHTML = `
-          <p>📦 <span>Message:</span> ${data.message}</p>
-          <p>✅ <span>Status:</span> ${data.status}</p>
-          <p>👤 <span>Author:</span> ${data.author}</p>
-          <p>🏗️ <span>Platform:</span> Kubernetes K3s</p>
-          <p>🔧 <span>Stack:</span> FastAPI + ArgoCD + Jenkins</p>
-        `;
-      } catch(e) {
-        document.getElementById('data').innerHTML = '<p style="color:red">API connection error</p>';
-      }
-    }
-    fetchData();
-  </script>
 </body>
 </html>
