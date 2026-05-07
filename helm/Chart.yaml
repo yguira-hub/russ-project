@@ -1,0 +1,4 @@
+apiVersion: v2
+name: russ-project
+description: DevOps Portfolio App - GitOps with ArgoCD + Jenkins
+version: 0.1.0
