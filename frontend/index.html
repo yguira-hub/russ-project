@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>DevOps Portfolio</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { font-family: Arial, sans-serif; background: #0f172a; color: white; display: flex; flex-direction: column; align-items: center; justify-content: center; min-height: 100vh; }
+    .card { background: #1e293b; border-radius: 16px; padding: 40px; text-align: center; max-width: 500px; width: 90%; box-shadow: 0 0 40px rgba(99,102,241,0.3); }
+    h1 { font-size: 2rem; margin-bottom: 10px; color: #818cf8; }
+    .badge { display: inline-block; background: #22c55e; color: white; padding: 4px 12px; border-radius: 20px; font-size: 0.8rem; margin: 10px 0 20px; }
+    .info { background: #0f172a; border-radius: 10px; padding: 20px; margin-top: 20px; text-align: left; }
+    .info p { margin: 8px 0; color: #94a3b8; }
+    .info span { color: #22c55e; font-weight: bold; }
+    button { margin-top: 20px; background: #6366f1; color: white; border: none; padding: 12px 30px; border-radius: 8px; cursor: pointer; font-size: 1rem; }
+    button:hover { background: #4f46e5; }
+  </style>
+</head>
+<body>
+  <div class="card">
+    <h1>🚀 DevOps Portfolio</h1>
+    <span class="badge">● LIVE</span>
+    <p style="color:#94a3b8">Running on Kubernetes K3s cluster</p>
+    <div class="info" id="data">
+      <p>Loading API data...</p>
+    </div>
+    <button onclick="fetchData()">🔄 Refresh</button>
+  </div>
+  <script>
+    async function fetchData() {
+      document.getElementById('data').innerHTML = '<p>Loading...</p>';
+      try {
+        const res = await fetch('http://192.168.64.8:32001/');
+        const data = await res.json();
+        document.getElementById('data').innerHTML = `
+          <p>📦 <span>Message:</span> ${data.message}</p>
+          <p>✅ <span>Status:</span> ${data.status}</p>
+          <p>👤 <span>Author:</span> ${data.author}</p>
+          <p>🏗️ <span>Platform:</span> Kubernetes K3s</p>
+          <p>🔧 <span>Stack:</span> FastAPI + ArgoCD + Jenkins</p>
+        `;
+      } catch(e) {
+        document.getElementById('data').innerHTML = '<p style="color:red">API connection error</p>';
+      }
+    }
+    fetchData();
+  </script>
+</body>
+</html>
